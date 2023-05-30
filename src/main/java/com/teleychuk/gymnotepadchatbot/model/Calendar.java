@@ -5,7 +5,9 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,6 +19,7 @@ public class Calendar {
 
     private LocalDate data;
 
-    private Long chatId;
+    @OneToMany
+    private List<Simulator> simulators;
 
 }

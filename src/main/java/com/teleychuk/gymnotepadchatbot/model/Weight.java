@@ -15,6 +15,4 @@ public class Weight {
     private Long weightId;
 
     private Long weight;
-
-    private Long repetitionId;
 }

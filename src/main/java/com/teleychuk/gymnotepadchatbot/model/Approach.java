@@ -5,10 +5,12 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Getter
 @Setter
-@Entity(name = "approachs")
+@Entity(name = "approaches")
 public class Approach {
 
     @Id
@@ -16,6 +18,7 @@ public class Approach {
 
     private Long quantityA;
 
-    private Long simulatorId;
+    @OneToMany
+    private List<Repetition> repetitions;
 
 }
