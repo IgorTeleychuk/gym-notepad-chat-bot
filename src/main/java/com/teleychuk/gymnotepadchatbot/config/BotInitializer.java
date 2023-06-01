@@ -1,6 +1,6 @@
 package com.teleychuk.gymnotepadchatbot.config;
 
-import com.teleychuk.gymnotepadchatbot.service.TelegramBot;
+import com.teleychuk.gymnotepadchatbot.service.MajorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -12,9 +12,9 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 @Component
 @Slf4j
 public class BotInitializer {
-    TelegramBot bot;
+    MajorService bot;
 
-    public BotInitializer(TelegramBot bot) {
+    public BotInitializer(MajorService bot) {
         this.bot = bot;
     }
 
