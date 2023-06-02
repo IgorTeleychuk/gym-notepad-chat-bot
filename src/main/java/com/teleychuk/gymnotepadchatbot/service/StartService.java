@@ -50,7 +50,7 @@ public class StartService  {
     }
 
     private SendMessage startCommandReceived(long chatId, String firstName) {
-        String textToSend = EmojiParser.parseToUnicode("Привет, " + firstName + ", Приятно познакомиться!" + " :blush:");
+        String textToSend = EmojiParser.parseToUnicode("Привет, " + firstName + ", Выбери нужное действие!" + " :blush:");
         log.info("Replied to user: " + firstName);
         return sendMessage(chatId, textToSend, Keyboard.startKeyboard());
     }

@@ -1,6 +1,8 @@
 package com.teleychuk.gymnotepadchatbot.service;
 
+import com.teleychuk.gymnotepadchatbot.repository.SimulatorRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -9,6 +11,9 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMar
 @Component
 @Slf4j
 public class SimulatorService {
+
+    @Autowired
+    private SimulatorRepository simulatorRepository;
 
     public SendMessage simulator(Update update) {
 
