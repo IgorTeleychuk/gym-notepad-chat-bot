@@ -1,6 +1,7 @@
 package com.teleychuk.gymnotepadchatbot.service;
 
 import com.teleychuk.gymnotepadchatbot.model.User;
+import com.teleychuk.gymnotepadchatbot.repository.CalendarRepository;
 import com.teleychuk.gymnotepadchatbot.repository.UserRepository;
 import com.vdurmont.emoji.EmojiParser;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,9 @@ public class StartService  {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private CalendarRepository calendarRepository;
+
     public SendMessage start(Update update) {
 
         long chatId = update.getMessage().getChatId();
@@ -28,9 +32,10 @@ public class StartService  {
         SendMessage messageZero = new SendMessage();
         messageZero.setText("zero");
 
-        registerUser(update.getMessage());
+
 
         if (messageText.equals("/start")) {
+            registerUser(update.getMessage());
             return startCommandReceived(chatId, update.getMessage().getChat().getFirstName());
         }
         if (messageText.equals("Добавить запись")) {
@@ -41,7 +46,8 @@ public class StartService  {
             return sendMessage(chatId, "You have selected change", Keyboard.calendarKeyboard());
         }
         if (messageText.equals("Посмотреть запись")) {
-            return sendMessage(chatId, "You have selected show", Keyboard.calendarKeyboard());
+            String sendText = getAllCalendarByUser(chatId);
+            return sendMessage(chatId, sendText, Keyboard.startKeyboard());
         }
         if (messageText.equals("Удалить запись")) {
             return sendMessage(chatId, "You have selected delete", Keyboard.calendarKeyboard());
@@ -49,8 +55,13 @@ public class StartService  {
         return messageZero;
     }
 
+    private String getAllCalendarByUser(long chatId) {
+        log.info("Get All Date By User " + chatId);
+        return calendarRepository.findAll().toString();
+    }
+
     private SendMessage startCommandReceived(long chatId, String firstName) {
-        String textToSend = EmojiParser.parseToUnicode("Привет, " + firstName + ", Выбери нужное действие!" + " :blush:");
+        String textToSend = EmojiParser.parseToUnicode("Привет, " + firstName + "! Выбери нужное действие!" + " :blush:");
         log.info("Replied to user: " + firstName);
         return sendMessage(chatId, textToSend, Keyboard.startKeyboard());
     }

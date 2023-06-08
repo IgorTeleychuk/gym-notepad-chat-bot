@@ -53,24 +53,30 @@ public class MajorService extends TelegramLongPollingBot {
             String messageText = update.getMessage().getText();
             long chatId = update.getMessage().getChatId();
 
-            if (!startService.start(update).getText().equals("zero")) {
+            if (messageText.equals("/start")
+                    || messageText.equals("Добавить запись")
+                    || messageText.equals("Изменить запись")
+                    || messageText.equals("Посмотреть запись")
+                    || messageText.equals("Удалить запись")) {
                 executeMessage(startService.start(update));
-            }
-            if (!calendarService.calendar(update).getText().equals("zero")) {
+            } else if (messageText.equals("Сегодня")
+                    || messageText.equals("Вчера")
+                    || messageText.equals("Позавчера")
+                    || messageText.equals("назад....")) {
                 executeMessage(calendarService.calendar(update));
             }
-            if (!simulatorService.simulator(update).getText().equals("zero")) {
-                executeMessage(simulatorService.simulator(update));
-            }
-            if (!approachService.approach(update).getText().equals("zero")) {
-                executeMessage(approachService.approach(update));
-            }
-            if (!repetitionService.repetition(update).getText().equals("zero")) {
-                executeMessage(repetitionService.repetition(update));
-            }
-            if (!weightService.weight(update).getText().equals("zero")) {
-                executeMessage(weightService.weight(update));
-            }
+//            if (!simulatorService.simulator(update).getText().equals("zero")) {
+//                executeMessage(simulatorService.simulator(update));
+//            }
+//            if (!approachService.approach(update).getText().equals("zero")) {
+//                executeMessage(approachService.approach(update));
+//            }
+//            if (!repetitionService.repetition(update).getText().equals("zero")) {
+//                executeMessage(repetitionService.repetition(update));
+//            }
+//            if (!weightService.weight(update).getText().equals("zero")) {
+//                executeMessage(weightService.weight(update));
+//            }
         }
     }
 
