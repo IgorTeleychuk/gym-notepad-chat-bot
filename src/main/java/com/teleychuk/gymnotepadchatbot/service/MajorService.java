@@ -64,19 +64,31 @@ public class MajorService extends TelegramLongPollingBot {
                     || messageText.equals("Позавчера")
                     || messageText.equals("назад....")) {
                 executeMessage(calendarService.calendar(update));
+            } else if (messageText.equals("Вывести список")
+                    || messageText.equals("Добавить новый")
+                    || messageText.equals("Удалить.")
+                    || messageText.equals("назад...")) {
+                executeMessage(simulatorService.simulator(update));
+            } else if (messageText.equals("Три")
+                    || messageText.equals("Пять")
+                    || messageText.equals("Шесть")
+                    || messageText.equals("назад..")) {
+                executeMessage(approachService.approach(update));
+            } else if (messageText.equals("Десять")
+                    || messageText.equals("Двенадцать")
+                    || messageText.equals("Пятнадцать.")
+                    || messageText.equals("назад.")) {
+                executeMessage(repetitionService.repetition(update));
+            } else if (messageText.equals("Пять кг")
+                    || messageText.equals("Десять кг")
+                    || messageText.equals("Пятнадцать кг")
+                    || messageText.equals("Двадцать кг")
+                    || messageText.equals("Сохранить")
+                    || messageText.equals("Отмена")) {
+                executeMessage(weightService.weight(update));
+            } else {
+                prepareAndSendMessage(chatId, "Данной команды не существует! Пожалуйста, придерживайтесь кнопок меню!");
             }
-//            if (!simulatorService.simulator(update).getText().equals("zero")) {
-//                executeMessage(simulatorService.simulator(update));
-//            }
-//            if (!approachService.approach(update).getText().equals("zero")) {
-//                executeMessage(approachService.approach(update));
-//            }
-//            if (!repetitionService.repetition(update).getText().equals("zero")) {
-//                executeMessage(repetitionService.repetition(update));
-//            }
-//            if (!weightService.weight(update).getText().equals("zero")) {
-//                executeMessage(weightService.weight(update));
-//            }
         }
     }
 
